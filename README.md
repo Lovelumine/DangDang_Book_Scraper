@@ -1,3 +1,4 @@
+中文说明：https://github.com/Lovelumine/DangDang_Book_Scraper/blob/main/README_CN.md
 # DangDang Book Scraper
 
 This Python project aims to crawl detailed information about books from Dangdang.com and export it as a CSV file. 
