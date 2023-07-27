@@ -2,9 +2,6 @@ import csv
 from tkinter import Tk
 from tkinter.filedialog import asksaveasfilename
 
-# 存储所有图书的信息
-
-
 def save_to_csv(books_info):
     Tk().withdraw()  # 关闭Tk的主窗口
     filename = asksaveasfilename(defaultextension=".csv")  # 弹出保存文件对话框
