@@ -1,6 +1,6 @@
 # DangDang Book Scraper
 
-This Python-based project is designed to scrape detailed information about books from the DangDang website. 
+This Python project aims to crawl detailed information about books from Dangdang.com and export it as a CSV file. 
 
 ## Features
 
