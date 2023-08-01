@@ -77,13 +77,6 @@ headers = {
     'Referer': 'http://www.dangdang.com/'
 }
 
-
-def read_book_names_from_file(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        # 读取所有书名，并且过滤掉空行和只有空白字符的行
-        book_names = [line.strip() for line in file if line.strip()]
-    return book_names
-
 def get_book_names_from_file(filename):
     with open(filename, 'r', encoding='utf-8') as file:
         # 去除空行和可能的乱码
