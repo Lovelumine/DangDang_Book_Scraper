@@ -16,6 +16,13 @@ browser, proxies = init_browser_with_proxies()
 session = requests.Session()
 if proxies:
     session.proxies = proxies
+else:
+    # Explicitly disable proxies for the session
+    session.proxies = {
+        "http": None,
+        "https": None,
+        "ftp": None
+    }
 
 
 
