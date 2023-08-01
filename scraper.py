@@ -83,15 +83,23 @@ def get_book_info_from_url(browser, session, url, headers,books_info):
 
 
 def get_book_info(browser, session, book_title, headers, books_info):
-    search_url = 'http://search.dangdang.com/?key={}&act=input'.format(book_title)
-    response = session.get(search_url, headers=headers)
-    response.encoding = 'utf-8'
-    soup = BeautifulSoup(response.text, 'html.parser')
+    try:
+        search_url = 'http://search.dangdang.com/?key={}&act=input'.format(book_title)
+        response = session.get(search_url, headers=headers)
+        response.encoding = 'utf-8'
+        soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Find the book detail URL and add 'http:' if necessary
-    book_detail_url = soup.find('a', attrs={'name': 'itemlist-title'})['href']
-    if book_detail_url.startswith('//'):
-        book_detail_url = 'http:' + book_detail_url
-    print(book_detail_url)
-    url=book_detail_url
-    get_book_info_from_url(browser, session, url, headers,books_info)
+        # Find the book detail URL and add 'http:' if necessary
+        book_detail_a_tag = soup.find('a', attrs={'name': 'itemlist-title'})
+        if not book_detail_a_tag:
+            print(f"未找到与'{book_title}'相关的书籍。")
+            return
+
+        book_detail_url = book_detail_a_tag['href']
+        if book_detail_url.startswith('//'):
+            book_detail_url = 'http:' + book_detail_url
+        print(book_detail_url)
+
+        get_book_info_from_url(browser, session, book_detail_url, headers, books_info)
+    except Exception as e:
+        print(f"处理书籍'{book_title}'时发生错误: {e}")
